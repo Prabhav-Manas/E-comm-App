@@ -1,12 +1,10 @@
-const http = require("http");
 const app = require("./backEndApp/app");
-require("dotenv").config();
+const serverless = require("serverless-http");
 
-const port = process.env.PORT || 8080;
-app.set("port", port);
+module.exports = serverless(app);
 
-const server = http.createServer(app);
-
-server.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+// Local test support
+if (require.main === module) {
+  const port = process.env.PORT || 3000;
+  app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
+}
