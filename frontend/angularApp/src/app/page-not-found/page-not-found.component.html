@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="page-not-found my-5 col-6 m-auto">
+      <h1 class="text-danger text-center fw-bold">404</h1>
+      <p class="text-danger text-center message">Page Not Found</p>
+      <div class="text-center">
+        <p class="httpMessage">{{ message }}</p>
+
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          (click)="onGoBack()"
+        >
+          Go Back
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.bgFormColor {
+  background-color: #3c3d37;
+}
+.floatDropDown {
+  float: right;
+  background-color: #3c3d37;
+  color: #ecdfcc;
+}
+.textColor {
+  color: #ecdfcc;
+}
+input {
+  border: none;
+  border-radius: 0;
+}
+input:focus {
+  outline: 0;
+  box-shadow: none;
+}
+.eye i {
+  position: absolute;
+  margin-top: -23px;
+  right: 38%;
+}
+.alreadyAcc {
+  cursor: pointer;
+}
+.alreadyAcc,
+.forgotPass {
+  text-decoration: none;
+}
+.btnSubmit {
+  border: none;
+  background-color: #ecdfcc;
+  color: #3c3d37;
+  border-radius: 0;
+}

@@ -1,0 +1,120 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 m-auto my-4 p-4 shadow bgFormColor">
+      <h1 class="text-center textColor">Sign Up</h1>
+      <form [formGroup]="regForm">
+        <!-- UserType DropDown -->
+        <div class="">
+          <div class="">
+            <label for="dropdown" class="textColor">Select User Type:</label>
+            <select id="dropdown" formControlName="userType" class="floatDropDown">
+              <option *ngFor="let option of dropdownOptions" [value]="option.value">{{ option.label }}</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Full Name -->
+        <div class="mt-3">
+          <div class="d-md-flex mb-4">
+            <div class="col-md-6">
+              <label for="firstName" class="form-label textColor">First Name</label>
+              <input type="text" class="form-control relative" id="firstName" formControlName="firstName" oninput="value = this.value.replace(/[^a-zA-Z\s{2,}\-]+/g, '')" [ngClass]="{'is-invalid':regForm.controls?.['firstName']?.invalid && regForm.controls?.['firstName']?.touched}" (keydown)="Space($event)"/>
+              <small *ngIf="regForm.controls?.['firstName']?.errors?.['required']" class="invalid-feedback text-danger absolute">
+                First Name is required.
+              </small>
+            </div>
+            &nbsp;
+            <div class="col-md-6">
+              <label for="lastName" class="form-label textColor">Last Name</label>
+              <input type="text" class="form-control relative" id="lastName" formControlName="lastName" oninput="value = this.value.replace(/[^a-zA-Z\s{2,}\-]+/g, '')" [ngClass]="{'is-invalid':regForm.controls?.['lastName']?.invalid && regForm.controls?.['lastName']?.touched}" (keydown)="Space($event)"/>
+              <small *ngIf="regForm.controls?.['lastName']?.errors?.['required']" class="invalid-feedback text-danger absolute">
+                Last Name is required.
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-4">
+          <label for="email" class="form-label textColor">Email</label>
+          <input type="email" class="form-control relative" id="email" formControlName="email" [ngClass]="{'is-invalid':regForm.controls?.['email']?.invalid && regForm.controls?.['email']?.touched}" (keydown)="Space($event)" />
+          <small *ngIf="regForm.controls?.['email']?.errors?.['required']" class="invalid-feedback text-danger absolute">
+            Email is required.
+          </small>
+        </div>
+
+        <!-- Password -->
+        <div class="mb-4">
+          <label for="password" class="form-label textColor">Password</label>
+          <input type="{{ hide }}" class="form-control relative" id="password" formControlName="password" [ngClass]="{'is-invalid':regForm.controls?.['password']?.invalid && regForm.controls?.['password']?.touched}" (keydown)="Space($event)"/>
+          <span class="eye">
+            <i class="fa fa-{{hide == 'password' ? 'eye-slash' : 'eye'}} random-eye" id="togglePassword" (click)="hide == 'password' ? (hide = 'text') : (hide = 'password')"></i>
+          </span>
+          <small *ngIf="regForm.controls?.['password']?.errors?.['required']" class="invalid-feedback text-danger absolute">
+            Password is required.
+          </small>
+        </div>
+
+        <!-- Country Code & Phone -->
+        <div class="d-md-flex justify-content-between mb-4">
+          <mat-form-field class="custom-height">
+            <mat-label>Phone Number</mat-label>
+            <ngx-mat-intl-tel-input
+              formControlName="phone"
+              [preferredCountries]="['us', 'gb']"
+              [enablePlaceholder]="true"
+              [enableSearch]="true"
+              id="phone"
+              name="phone"
+              class="matInp relative"
+              [ngClass]="{'is-invalid': regForm.controls?.['phone']?.invalid && regForm.controls?.['phone']?.touched}"
+            ></ngx-mat-intl-tel-input>
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-hint>Include area code</mat-hint>
+          </mat-form-field>
+          <small *ngIf="regForm.controls?.['phone']?.errors?.['required']" class="invalid-feedback text-danger absolute">
+            Phone Number is required.
+          </small>
+        </div>
+
+        <!-- Business Name & GST Number -->
+        <div class="d-md-flex mb-4" *ngIf="seller">
+          <div class="col-md-6">
+            <label for="businessName" class="form-label textColor">Business Name</label>
+            <input type="text" class="form-control relative" id="businessName" formControlName="businessName" [ngClass]="{'is-invalid':regForm.controls?.['businessName']?.invalid && regForm.controls?.['businessName']?.touched}" (keydown)="Space($event)"/>
+            <small *ngIf="regForm.controls?.['businessName']?.errors?.['required']" class="invalid-feedback text-danger absolute">
+              Business Name is required.
+            </small>
+          </div>
+          &nbsp;
+          <div class="col-md-6">
+            <label for="gstNumber" class="form-label textColor">GST Number</label>
+            <input type="text" class="form-control relative" id="gstNumber" formControlName="gstNumber" oninput="value = this.value.replace(/[^a-zA-Z0-9]+/g, '')" [ngClass]="{'is-invalid':regForm.controls?.['gstNumber']?.invalid && regForm.controls?.['gstNumber']?.touched}" (keydown)="Space($event)"/>
+            <small *ngIf="regForm.controls?.['gstNumber']?.errors?.['required']" class="invalid-feedback text-danger absolute">
+              GST Number is required.
+            </small>
+          </div>
+        </div>
+
+        <!-- Category -->
+        <div class="mb-4" *ngIf="seller">
+          <h4>Select Category</h4>
+          <mat-form-field>
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="categoryId" required>
+              <mat-option *ngFor="let category of categories" [value]="category._id">{{ category.name }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="regForm.controls?.['categoryId']?.hasError('required')">
+              Category is required.
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="d-md-flex justify-content-between">
+          <p class=""><a routerLink="/auth/signin" class="textColor alreadyAcc">Already have account? Sign in</a></p>
+          <button type="submit" class="btn btnSubmit" (click)="onSubmit()">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

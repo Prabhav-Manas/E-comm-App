@@ -1,0 +1,46 @@
+.floatItem {
+  float: right;
+}
+.pointer {
+  cursor: pointer;
+}
+.logoutButton {
+  right: 5px;
+}
+.card {
+  height: 100%; /* Important for equal height */
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.9s ease, box-shadow 0.5s ease; /* Smooth transition */
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Move the card slightly upward */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Add shadow */
+}
+.card-body {
+  flex-grow: 1; /* Stretch the body to fill the card */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #e9e8e7;
+}
+.card,
+button {
+  border-radius: 0;
+}
+.description {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+.card-title {
+  font-size: 1.2rem;
+}
+.mt-auto {
+  margin-top: auto; /* Push button to bottom */
+}
+.card-img-top {
+  height: 200px; /* or whatever height suits your design */
+  object-fit: cover; /* crop and maintain aspect ratio */
+}
+

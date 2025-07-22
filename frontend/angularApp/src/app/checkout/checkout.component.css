@@ -1,0 +1,24 @@
+.container {
+  margin-top: 50px;
+}
+
+.card {
+  /* padding: 20px; */
+  border-radius: 5px;
+}
+
+.header {
+  background-color: black;
+  color: #fff;
+}
+
+#card-element {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+#card-errors {
+  color: red;
+}

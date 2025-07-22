@@ -1,0 +1,48 @@
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.floatDropDown {
+  float: right;
+  background-color: #3c3d37;
+  color: #ecdfcc;
+}
+.bgFormColor {
+  background-color: #3c3d37;
+}
+input {
+  border: none;
+  border-radius: 0;
+}
+input:focus {
+  outline: 0;
+  box-shadow: none;
+}
+.eye i {
+  position: absolute;
+  margin-top: -23px;
+  right: 38%;
+}
+.textColor {
+  color: #ecdfcc;
+}
+.alreadyAcc {
+  cursor: pointer;
+  text-decoration: none;
+}
+.mat-mdc-form-field-subscript-wrapper,
+.mat-mdc-form-field-bottom-align {
+  color: #ecdfcc !important;
+}
+.btnSubmit {
+  border: none;
+  background-color: #ecdfcc;
+  color: #3c3d37;
+  border-radius: 0;
+}
+/* .country-selector {
+  opacity: 1 !important;
+  bottom: 8px !important;
+} */

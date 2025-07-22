@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row d-flex flex-wrap">
+    <div class="col-md-3 my-3 d-flex" *ngFor="let product of products">
+      <div class="card w-100 d-flex flex-column">
+        <img [src]="product.imagePath" class="card-img-top" alt="{{ product.productName }}" />
+        <div class="card-body flex-grow-1 d-flex flex-column">
+          <h2 class="card-title text-success">{{ product.productName }}</h2>
+          <p class="card-text">
+            <strong class="text-success">Category: </strong>
+            {{ product.category }}
+          </p>
+          <p class="text-success">
+            <strong class="text-danger">Price: </strong>{{ product.price }}
+          </p>
+          <div class="mt-auto">
+            <button type="button" class="btn btn-outline-primary w-100" [routerLink]="['/product-details', product._id]">
+              View Details
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

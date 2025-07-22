@@ -1,0 +1,163 @@
+<div class="" *ngIf="isLoggedIn">
+  <!-- SideNav Bar For userType==='seller' -->
+  <div class="wrapper" *ngIf="isSeller; else userNavbar">
+    <div class="sidenav" [class.collapsed]="isCollapsed">
+      <div class="sidenav-header d-md-flex justify-content-around mt-3">
+        <span class="mt-2" (click)="toggleCollapse()">
+          <i
+            class="fa"
+            [ngClass]="{
+              'fa-bars': isCollapsed,
+              'fa-chevron-left': !isCollapsed
+            }"
+          ></i>
+        </span>
+        <h1 class="mt-1 text-white" *ngIf="!isCollapsed">Seller Dashboard</h1>
+      </div>
+      <ul class="sidenav-nav">
+        <li class="sidenav-nav-item">
+          <a
+            class="side-nav-link"
+            [routerLink]="['/seller-dashboard']"
+            (click)="onClickDashboard()"
+          >
+            <i class="sidenav-link-icon fa fa-home"></i>
+            <span *ngIf="!isCollapsed" class="sidenav-link-text text-white"
+              >Dashboard</span
+            >
+          </a>
+        </li>
+        <li class="sidenav-nav-item">
+          <a class="side-nav-link" (click)="toggleMenu('product')">
+            <i class="sidenav-link-icon fa fa-shopping-bag"></i>
+            <span *ngIf="!isCollapsed" class="sidenav-link-text text-white"
+              >Product</span
+            >
+          </a>
+          <div class="sub-menu" *ngIf="isProductMenuOpen && !isCollapsed">
+            <a
+              class="side-nav-link"
+              routerLink="/add-product"
+              (click)="onClickAddProduct()"
+            >
+              <i class="sidenav-link-icon fa fa-plus-square-o"></i>
+              <span>Add Product</span>
+            </a>
+            <a
+              class="side-nav-link"
+              [routerLink]="['/product-list']"
+              (click)="onClickProductList()"
+            >
+              <i class="sidenav-link-icon fa fa-list"></i>
+              <span>Product List</span>
+            </a>
+          </div>
+        </li>
+        <li class="sidenav-nav-item">
+          <a class="side-nav-link" (click)="toggleMenu('category')">
+            <i class="sidenav-link-icon fa fa-object-group"></i>
+            <span *ngIf="!isCollapsed" class="sidenav-link-text text-white"
+              >Category</span
+            >
+          </a>
+          <div class="sub-menu" *ngIf="isCategoryMenuOpen && !isCollapsed">
+            <a
+              class="side-nav-link"
+              [routerLink]="['/category-list']"
+              (click)="onClickCategory()"
+            >
+              <i class="sidenav-link-icon fa fa-list"></i>
+              <span>Category List</span>
+            </a>
+          </div>
+        </li>
+        <li class="sidenav-nav-item">
+          <a class="side-nav-link" (click)="onLogOut()">
+            <i class="sidenav-link-icon fa fa-power-off"></i>
+            <span *ngIf="!isCollapsed" class="sidenav-link-text text-white"
+              >Logout</span
+            >
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Top NavBar For userType==='user' -->
+  <ng-template #userNavbar>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top bgUserColor">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarTogglerDemo01"
+          aria-controls="navbarTogglerDemo01"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse d-md-flex"
+          id="navbarTogglerDemo01"
+        >
+          <a class="navbar-brand position-relative text-white" routerLink="/user-dashboard">Dashboard</a>
+          <ul class="d-md-flex navbar-nav m-auto mb-2 mb-lg-0">
+            <div class="d-md-flex">
+              <li class="nav-item">
+                <!-- <a class="nav-link pointer text-white">Home</a> -->
+              </li>
+              <li class="nav-item">
+                <!-- <a class="nav-link pointer text-white">About</a> -->
+              </li>
+            </div>
+
+            <div class="row">
+              <div class="d-md-flex">
+                <div class="dropdown position-absolute menuButton">
+                  <a routerLink="/shopping-cart" class="position-relative">
+                    <i
+                      class="fa fa-shopping-cart text-white"
+                      aria-hidden="true"
+                    ></i>
+                    <span
+                      class="position-absolute top-0 translate-middle badge rounded-pill bg-success"
+                    >
+                      {{ cartItemCount }}
+                      <span class="visually-hidden">items in cart</span>
+                    </span>
+                  </a>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <a
+                    class="dropdown-toggle text-white"
+                    type=""
+                    id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Action
+                  </a>
+                  <ul
+                    class="dropdown-menu"
+                    aria-labelledby="dropdownMenuButton1"
+                  >
+                    <li>
+                      <a class="dropdown-item" routerLink="/orderHistory"
+                        >Your Order</a
+                      >
+                    </li>
+                    <!-- <li><a class="dropdown-item" href="#">Track Order</a></li> -->
+                    <li>
+                      <a class="dropdown-item" (click)="onLogOut()">Logout</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </ng-template>
+</div>

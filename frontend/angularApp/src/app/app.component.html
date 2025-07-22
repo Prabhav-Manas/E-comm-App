@@ -1,0 +1,29 @@
+<div class="app-wrapper d-flex flex-column min-vh-100">
+  <app-loader></app-loader>
+  <app-header (sidebarToggle)="onSidebarToggle($event)"></app-header>
+
+  <div class="flex-grow-1 d-flex">
+    <!-- Sidebar for Seller -->
+    <div
+      *ngIf="isSeller"
+      [ngClass]="{ 'col-2': isSidebarExpanded, 'col-1': !isSidebarExpanded }"
+    ></div>
+
+    <!-- Main Content Area -->
+    <div
+      class="main-content d-flex flex-column w-100"
+      [ngClass]="{
+        'col-10': isSeller && isSidebarExpanded,
+        'col-11': isSeller && !isSidebarExpanded,
+        'col-12': !isSeller,
+        'mt-5': userType === 'user'
+      }"
+    >
+      <div class="flex-grow-1">
+        <router-outlet></router-outlet>
+      </div>
+      <!-- Footer only for user -->
+      <app-footer *ngIf="userType === 'user'"></app-footer>
+    </div>
+  </div>
+</div>
