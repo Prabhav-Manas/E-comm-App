@@ -67,6 +67,15 @@ app.use("/api/category", categoryRoute);
 app.use("/api/cart", cartRoute);
 app.use("/api/checkout", checkoutRoute);
 
+app.get('/', (req, res) => {
+  res.send('Backend server is running ✅');
+});
+
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
+
+
 // ---Error Handling Middleware in Express-Validation---
 app.use(function (err, req, res, next) {
   if (err instanceof ValidationError) {
