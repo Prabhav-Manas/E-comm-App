@@ -1,4 +1,9 @@
 export const environment = {
   production: true,
-  // baseUrl: 'http://e-comm-mean-app.eu-north-1.elasticbeanstalk.com/api/user', //Replace it with your actual production API URL.
+  baseUrl: 'https://e-comm-app-2.onrender.com/api/user',
+  wildRoute: 'https://e-comm-app-2.onrender.com/api/invalid-url',
+  myCart: 'https://e-comm-app-2.onrender.com/api/cart',
+  checkout: 'https://e-comm-app-2.onrender.com/api/checkout',
+  stripePublicKey:
+    'pk_test_51PacOZ2KZ7ovD5V6PkZZKPjfTarqVidUtBCEgZcIEqOZKFqeMwP2EvuWmnj2vnRXMk0Aj1KSxdGqbaN7GY7D3dPG00FzHGAJvp',
 };
