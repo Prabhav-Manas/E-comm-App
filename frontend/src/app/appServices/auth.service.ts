@@ -10,7 +10,8 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { AuthResponse } from '../appModels/auth-response.model';
 import { LoaderService } from './loader.service';
 import { jwtDecode } from 'jwt-decode';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
+// import { environment } from 'src/environments/environment';
 import { CartService } from './cart.service';
 
 @Injectable({
