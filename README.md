@@ -16,10 +16,10 @@ A full-stack MEAN application for E-commerce Application that provides solution 
 
 ## Tech Stack
 
-**Frontend**: Angular 16, CSS, Bootstrap, Typescript
-**Backend**: Node.js, Express.js
-**Database**: MongoDB Atlas
-**Authentication & Authorization**: JSON Web Token (JWT)
+**Frontend**: Angular 16, CSS, Bootstrap, Typescript  
+**Backend**: Node.js, Express.js  
+**Database**: MongoDB Atlas  
+**Authentication & Authorization**: JSON Web Token (JWT)  
 
 ## Screenshots
 
