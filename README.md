@@ -11,6 +11,7 @@ A full-stack MEAN application for E-commerce Application that provides solution 
 - Add to cart functionality at user end
 - Checkout page for efficient payments or COD
 - Order History for users
+- Route Guard
 - RESTful APIs using MongoDB & Express.js
 - Responsive UI
 
