@@ -42,10 +42,10 @@ A full-stack MEAN application for E-commerce Application that provides solution 
 ![Checkout Page](screenshots/checkout.png)
 
 💳 **Test Card Info** (for demo/testing purposes):  
-Use card number: `4242 4242 4242 4242`  
-Expiry: Any future date  
-CVC: Any 3 digits  
-ZIP: Any 5 digits
+**Use card number:** `4242 4242 4242 4242`  
+**Expiry:** Any future date  
+**CVC:** Any 3 digits  
+**ZIP:** Any 5 digits
 
 ## Installations
 
