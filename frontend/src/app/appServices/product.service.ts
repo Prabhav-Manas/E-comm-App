@@ -2,11 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from '../appModels/product-data.model';
 import { Observable, map } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
+  private baseUrl=environment.product;
+
   constructor(private http: HttpClient) {}
 
   addProduct(
@@ -29,22 +32,13 @@ export class ProductService {
     productData.append('discount', discount.toString());
     productData.append('image', image);
 
-    return this.http.post(
-      'http://localhost:8080/api/product/add-product',
-      productData
-    );
+    return this.http.post(`${this.baseUrl}/add-product`, productData);
   }
 
-  getProducts(
-    postsPerPage: number,
-    currentPage: number
-  ): Observable<{ products: Product[]; maxProducts: number }> {
+  getProducts(postsPerPage: number, currentPage: number): Observable<{ products: Product[]; maxProducts: number }> {
     const queryParams = `?pageSize=${postsPerPage}&page=${currentPage}`;
-    return this.http
-      .get<{ products: Product[]; maxProducts: number }>(
-        'http://localhost:8080/api/product/all-products' + queryParams
-      )
-      .pipe(
+
+    return this.http.get<{ products: Product[]; maxProducts: number }>(`${this.baseUrl}/all-products` + queryParams).pipe(
         map((responseData) => {
           return {
             products: responseData.products,
@@ -55,7 +49,7 @@ export class ProductService {
   }
 
   getProductById(productId: any) {
-    return this.http.get(`http://localhost:8080/api/product/${productId}`);
+    return this.http.get(`${this.baseUrl}/${productId}`);
   }
 
   updateProduct(product: Product, image?: File) {
@@ -73,22 +67,20 @@ export class ProductService {
     if (image) {
       formData.append('image', image);
     }
-    return this.http.put(`http://localhost:8080/api/product/${product._id}`, formData);
+    return this.http.put(`${this.baseUrl}/${product._id}`, formData);
   }
 
   deleteProduct(product: Product) {
-    return this.http.delete(`http://localhost:8080/api/product/${product._id}`);
+    return this.http.delete(`${this.baseUrl}/${product._id}`);
   }
 
   // Fetch all products without pagination
   getAllProducts(): Observable<{ products: Product[] }> {
-    return this.http.get<{ products: Product[] }>(
-      'http://localhost:8080/api/product/all-products'
-    );
+    return this.http.get<{ products: Product[] }>(`${this.baseUrl}/all-products`);
   }
 
   updateCartItem(cartItemId: string, quantity: number): Observable<any> {
     const body = { cartItemId, quantity };
-    return this.http.put('http://localhost:8080/api/cart/updateItem', body);
+    return this.http.put(`${environment.cart}/api/cart/updateItem`, body);
   }
 }

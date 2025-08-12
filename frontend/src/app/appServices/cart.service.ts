@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Product } from '../appModels/product-data.model';
-import { environment } from 'src/environments/environment';
+// import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import { AuthService } from './auth.service';
 import { jwtDecode } from 'jwt-decode';
 
