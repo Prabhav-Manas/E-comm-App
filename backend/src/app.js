@@ -20,7 +20,8 @@ require("dotenv").config();
 
 // ---CORS configuration---
 const corsOptions = {
-  origin: ["http://localhost:4200", "https://e-comm-mean-prabhav.netlify.app"], // Your frontend origin
+  // origin: ["http://localhost:4200", "https://e-comm-mean-prabhav.netlify.app"], // Your frontend origin
+  origin: [process.env.FRONTEND_URL || "http://localhost:4200"], // Your frontend origin
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
   allowedHeaders: [
     "Content-Type",
