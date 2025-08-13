@@ -35,7 +35,7 @@ exports.addProduct = async (req, res) => {
 
     // Construct the image path
     // const imageUrl = req.file.path;
-    const url = req.protocol + "://" + req.get("host");
+    const url = process.env.BACKEND_URL || (req.protocol + "://" + req.get("host"));
 
     const newProduct = new Product({
       category,
@@ -80,6 +80,15 @@ exports.getProducts = async (req, res) => {
     const fetchedProducts = await productQuery;
     const count = await Product.countDocuments();
 
+    // ===Fix imagePath for already saved localhost URLs===
+    const backendUrl = process.env.BACKEND_URL || (req.protocol + "://" + req.get("host"));
+    fetchedProducts = fetchedProducts.map(product => {
+      if (product.imagePath.includes("localhost")) {
+        product.imagePath = backendUrl + "/images/" + product.imagePath.split("/").pop();
+      }
+      return product;
+    });
+
     res.status(200).json({
       message: "Products fetched successfully!",
       products: fetchedProducts,
@@ -99,6 +108,12 @@ exports.getSingleProduct = async (req, res) => {
     const product = await Product.findById(productId);
 
     if (product) {
+      // ===Fix imagePath if it still has "localhost"===
+      const backendUrl = process.env.BACKEND_URL || (req.protocol + "://" + req.get("host"));
+      if (product.imagePath.includes("localhost")) {
+        product.imagePath = backendUrl + "/images/" + product.imagePath.split("/").pop();
+      }
+
       res.status(200).json({
         message: "Product Fetched!",
         product: product,
@@ -135,7 +150,7 @@ exports.updateProduct = async (req, res, next) => {
 
     // Handle image update if a new image is uploaded
     if (req.file) {
-      const url = req.protocol + "://" + req.get("host");
+      const url = process.env.BACKEND_URL || (req.protocol + "://" + req.get("host"));
       updatedProduct.imagePath = url + "/images/" + req.file.filename;
     }
 
